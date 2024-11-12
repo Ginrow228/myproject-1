@@ -8,7 +8,8 @@ public class HomeWorkApp {
 //         System.out.println(trueOrFalse(5,5));
 //         negativeOrPositive(-5);
 //         System.out.println(positiveFalseOrNegativeTrue(-5));
-        printStringNTimes("Hello", 0);
+//          printStringNTimes("Hello", 5);
+            System.out.println(isLeapYear(100));
 
     }
 
@@ -71,6 +72,10 @@ public class HomeWorkApp {
             System.out.println(str);
             printStringNTimes(str, --count);
         }
+    }
+
+    static boolean isLeapYear(int year){
+        return year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
     }
 
 }
