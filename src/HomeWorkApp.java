@@ -7,6 +7,7 @@ public class HomeWorkApp {
 //         compareNumbers(5,6);
 //         System.out.println(trueOrFalse(5,5));
 //         negativeOrPositive(-5);
+//         System.out.println(positiveFalseOrNegativeTrue(-5));
 
     }
 
@@ -58,6 +59,10 @@ public class HomeWorkApp {
             message = "Положительное";
         }
         System.out.println(message);
+    }
+
+    static boolean positiveFalseOrNegativeTrue(int a){
+        return a < 0;
     }
 
 }
