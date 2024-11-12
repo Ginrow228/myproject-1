@@ -5,6 +5,7 @@ public class HomeWorkApp {
 //         checkSumSign(-10,-5);
 //         printColor(-1);
 //         compareNumbers(5,6);
+//           System.out.println(trueOrFalse(5,5));
     }
 
     static void printThreeWords(){// метод который выводит 3 слова в табличном виде
@@ -42,6 +43,11 @@ public class HomeWorkApp {
         } else {
             System.out.println("a < b"); // если значение a меньше значения b, то вывести на консоль результат
         }
+    }
+
+    static boolean trueOrFalse(int a, int b){ // метод возвращает true or false в зависимости от суммы чисел
+        int c = a + b; // сумма a и b
+        return c >= 10 && c <= 20;
     }
 
 }
