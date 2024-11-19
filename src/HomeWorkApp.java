@@ -35,7 +35,7 @@ public class HomeWorkApp {
     static void printColor(int value) { // метод который выводит цвет, в зависимости от переданного значения
         if (value <= 0) {
             System.out.println("Красный"); // если value меньше или ровно 0 вывести слово Красный
-        } else if (value > 0 && value <= 100) {
+        } else if (value <= 100) {
             System.out.println("Жёлтый"); // если value в пределах от 0 (исключительно) 100 (включительно) вывести слово Жёлтый
         } else {
             System.out.println("Зелёный"); // если value больше 100 вывести слово Зелёный
