@@ -1,11 +1,14 @@
+import java.util.Arrays;
+
 public class HomeWorkAppLesson4 {
     public static void main(String[] args){
 //        int[] arr = {0, 1, 0, 1, 0};
 //        replace1With0(arr);
-//        fillArray(100);
+//        fillArray(250);
 //        int[] arr = {1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1};
 //        arr = multiplyArray(arr);
-
+//        System.out.println(Arrays.toString(arr));
+//        swapArray(7, 5);
 
     }
     static void replace1With0(int[] arr){
@@ -31,4 +34,13 @@ public class HomeWorkAppLesson4 {
         }
         return arr;
     }
+
+    static int[] swapArray(int len, int initialValue){
+        int[] arr = new int[len];
+        for (int i = 0; i < len; i++) {
+            arr[i] = initialValue;
+        }
+        return arr;
+    }
+
 }
