@@ -17,9 +17,11 @@ public class HomeWorkAppLesson4 {
                   {0, 0, 0, 0, 0}
           };
             matrixDiagonal(arr); */
+//          int[] arr = {83, 33, 6, 65, 97, 2, 1, 0, -5, -7};
+//          findMinMax(arr);
+//            int[] arr = {1, 1, 1, 2, 1, 5};
+//            System.out.println(checkSum(arr));
 
-            int[] arr = {83, 33, 6, 65, 97, 2, 1, 0, -5, -7};
-            findMinMax(arr);
 
     }
     static void replace1With0(int[] arr){
@@ -78,6 +80,25 @@ public class HomeWorkAppLesson4 {
         }
         System.out.println("Minimal: " + min);
         System.out.println("Maximum: " + max);
+    }
+
+    static boolean checkSum(int[] arr){
+        if(arr.length < 2){
+            return false;
+        }
+        int totalSum = 0;
+        int leftSum = 0;
+        for (int i = 0; i < arr.length; i++) {
+            totalSum += arr[i];
+        }
+        for (int i = 0; i < arr.length; i++) {
+            leftSum += arr[i];
+            int rightSum = totalSum - leftSum;
+            if(leftSum == rightSum){
+                return true;
+            }
+        }
+        return false;
     }
 
 }
