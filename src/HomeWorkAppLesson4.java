@@ -9,6 +9,14 @@ public class HomeWorkAppLesson4 {
 //        arr = multiplyArray(arr);
 //        System.out.println(Arrays.toString(arr));
 //        swapArray(7, 5);
+/*          int[][] arr = {
+                  {0, 0, 0, 0, 0},
+                  {0, 0, 0, 0, 0},
+                  {0, 0, 0, 0, 0},
+                  {0, 0, 0, 0, 0},
+                  {0, 0, 0, 0, 0}
+          };
+            matrixDiagonal(arr); */
 
     }
     static void replace1With0(int[] arr){
@@ -41,6 +49,18 @@ public class HomeWorkAppLesson4 {
             arr[i] = initialValue;
         }
         return arr;
+    }
+
+    static void matrixDiagonal(int[][] arr){
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[i].length; j++) {
+                if(i == j || i + j == arr[i].length - 1){
+                    arr[i][j] = 1;
+                }
+                System.out.print(arr[i][j] + " ");
+            }
+            System.out.println();
+        }
     }
 
 }
