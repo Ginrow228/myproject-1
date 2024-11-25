@@ -1,6 +1,5 @@
-public class HomeWorkApp {
-
-    public static void main(String[] args) {
+public class HomeWorkAppLesson3 {
+//    public static void main(String[] args) {
 //         printThreeWords();
 //         checkSumSign(-10,-5);
 //         printColor(-1);
@@ -9,9 +8,9 @@ public class HomeWorkApp {
 //         negativeOrPositive(-5);
 //         System.out.println(positiveFalseOrNegativeTrue(-5));
 //          printStringNTimes("Hello", 5);
-            System.out.println(isLeapYear(100));
+//            System.out.println(isLeapYear(100));
 
-    }
+//    }
 
     static void printThreeWords() {// метод который выводит 3 слова в табличном виде
         System.out.println(
