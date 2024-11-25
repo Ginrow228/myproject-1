@@ -1,20 +1,26 @@
 import java.util.Arrays;
 
 public class HomeWorkAppLesson5 {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         int[] arr;
-    /** Блок односвязного списка
-        arr = initializationList(5);
-        arr = addLast(arr, 4);
-        System.out.println(Arrays.toString(arr));
-        System.out.println(searchIndex(arr,4));
-        System.out.println(lengthList(arr)); */
-        arr = queue(3);
+        /** Блок односвязного списка
+         arr = initializationList(5);
+         arr = addLast(arr, 4);
+         System.out.println(Arrays.toString(arr));
+         System.out.println(searchIndex(arr,4));
+         System.out.println(lengthList(arr)); */
+        arr = queue(7);
         addInQueue(arr, 2);
         addInQueue(arr, 4);
         addInQueue(arr, 5);
+        addInQueue(arr, 1);
+        addInQueue(arr, 6);
+        addInQueue(arr, 9);
+        addInQueue(arr, 10);
+        addInQueue(arr, 20);
         System.out.println(Arrays.toString(arr));
-        addInQueue(arr, 2);
+        getInQueue(arr);
+        System.out.println(Arrays.toString(arr));
     }
 
     /*
@@ -42,20 +48,35 @@ public class HomeWorkAppLesson5 {
         return arr.length;
     } */
 
-    static int[] queue(int sizeQueue){
-        if(sizeQueue <= 0){
+
+    static int[] queue(int sizeQueue) {
+        if (sizeQueue <= 0) {
             return new int[0];
         }
         return new int[sizeQueue + 1];
     }
 
-    // текущая длинна массива 4, эту длинну мы не можем превышать поэтому длинна должна быть больше
-    // текущей длинны
-    static void addInQueue(int[] arr, int val){
-        if(arr.length <= 0 || arr.length - 1 == arr[0]){ // проверка на выход за пределы массива
-            return;  // если длина меньше или равна 0 ИЛИ если длина -1 равна количеству тек. очереди
-        }   // выйти и не выполнять метод. ДЛИНА ВСЕГДА БОЛЬШЕ ТЕКУЩЕЙ ОЧЕРЕДИ НА 1
-        ++arr[0]; // arr[0] = количество текущей очереди, каждый раз когда метод вызывается, количество текущей очереди
-        arr[arr[0]] = val; // увеличивается, arr[arr[0]] = val = добавление значений в очередь
+    static void addInQueue(int[] arr, int val) {
+        if (arr.length <= 0 || arr.length - 1 == arr[0]) { // проверка на выход за пределы массива
+            return;
+        }
+        ++arr[0];
+        arr[arr[0]] = val;
+    }
+
+    static int getInQueue(int[] arr) {
+        if (arr.length == 0 || arr[0] == 0) {
+            return -1;
+        }
+        int firstValue = arr[1];
+        for (int i = 2; i < arr.length; i++) {
+            arr[i - 1] = arr[i];
+            if (arr[0] == i) {
+                arr[i] = 0;
+                break;
+            }
+        }
+        --arr[0];
+        return firstValue;
     }
 }
