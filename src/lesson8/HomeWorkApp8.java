@@ -5,7 +5,9 @@ public class HomeWorkApp8 {
 //        System.out.println(findSymbolOccurance("Hello, world!", ' '));
 //        System.out.println(findWordPosition("Apollo", "pollo"));
 //        System.out.println(stringReverse("Hello, world!"));
-          System.out.println(isPolindrome("level"));
+//        System.out.println(isPolindrome("level"));
+          WordGuessingGame game = new WordGuessingGame();
+          game.startGame();
     }
 
     static int findSymbolOccurance(String str, char symbol){
