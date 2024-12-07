@@ -4,7 +4,8 @@ public class HomeWorkApp8 {
     public static void main(String[] args){
 //        System.out.println(findSymbolOccurance("Hello, world!", ' '));
 //        System.out.println(findWordPosition("Apollo", "pollo"));
-          System.out.println(stringReverse("Hello, world!"));
+//        System.out.println(stringReverse("Hello, world!"));
+          System.out.println(isPolindrome("level"));
     }
 
     static int findSymbolOccurance(String str, char symbol){
@@ -28,5 +29,18 @@ public class HomeWorkApp8 {
             emptyStr += str.charAt(i);
         }
         return emptyStr;
+    }
+
+    static boolean isPolindrome(String str){
+        int firstIndex = 0;
+        int lastIndex = str.length() - 1;
+        while (firstIndex < lastIndex){
+            if(str.charAt(firstIndex) != str.charAt(lastIndex)){
+                return false;
+            }
+            firstIndex++;
+            lastIndex--;
+        }
+        return true;
     }
 }
