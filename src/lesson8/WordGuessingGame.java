@@ -15,22 +15,23 @@ public class WordGuessingGame {
         Scanner scanner = new Scanner(System.in);
         Random rand = new Random();
         String randomWord = words[rand.nextInt(words.length)];
-        String playerWord; // переменная для слово игрока
-        String hint = ""; // переменная для хранения подсказки
+        String playerWord;
+        String hint = "";
 
         while(true){
             System.out.print("Enter word: ");
-            playerWord = scanner.nextLine(); // считывание строки введенного слова
+            playerWord = scanner.nextLine();
 
-            if(playerWord.equals(randomWord)){ // проверка на сравнимость слова, если слово введенное игроком совпадает с загаданным словом то остановить игру
+            if(playerWord.equals(randomWord)){
                 break;
-            } else { // если слово не совпало, то идёт сравнение на совпадение символов, если n символы совпали то добавляем подсказку
-                for (int i = 0; i < randomWord.length(); i++) {
+            } else {
+                int minLen = randomWord.length() < playerWord.length() ? randomWord.length() : playerWord.length();
+                for (int i = 0; i < minLen; i++) {
                     if(randomWord.charAt(i) == playerWord.charAt(i)){
-                        hint += randomWord.charAt(i); // добавляем в подсказку символы которые есть в загаданном слове
+                        hint += randomWord.charAt(i);
                     } else {
-                        while(hint.length() < 15){ // чтобы игрок не узнал сколько символов в слове необходимо добавить 15 знаков #
-                            hint += "#"; // если загаданное слово будет состоять из 5 букв то в переменной hint длина будет 5 для этого добавляем # пока hint меньше 15
+                        while(hint.length() < 15){
+                            hint += "#";
                         }
                     }
                 }
