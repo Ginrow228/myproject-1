@@ -1,11 +1,11 @@
 package lesson7;
 
 public class Employee {
-    String info;
-    String jobTitle;
-    String email;
-    String numberPhone;
-    int age;
+    private String info;
+    private String jobTitle;
+    private String email;
+    private String numberPhone;
+    private int age;
 
     public Employee(String info, String jobTitle, String email, String numberPhone, int age) {
         this.info = info;
