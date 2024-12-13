@@ -3,7 +3,8 @@ package lesson8;
 public class Main {
     public static void main(String[] args){
 //        System.out.println(findSymbolOccurance("Hello, world!", ' '));
-        System.out.println(findWordPosition("Apollo", "Apple"));
+//        System.out.println(findWordPosition("Apollo", "Apple"));
+        System.out.println(stringReverse("Hello, world!"));
 
     }
 
@@ -20,6 +21,14 @@ public class Main {
 
     static int findWordPosition(String source, String target) {
         return source.indexOf(target);
+    }
+
+    static String stringReverse(String str){
+        String emptyStr = "";
+        for (int i = str.length() - 1; i >= 0; i--) {
+            emptyStr += str.charAt(i);
+        }
+        return emptyStr;
     }
 
 }
