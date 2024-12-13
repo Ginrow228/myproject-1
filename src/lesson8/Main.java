@@ -5,7 +5,10 @@ public class Main {
 //        System.out.println(findSymbolOccurance("Hello, world!", ' '));
 //        System.out.println(findWordPosition("Apollo", "Apple"));
 //        System.out.println(stringReverse("Hello, world!"));
-        System.out.println(isPolindrome("level"));
+//        System.out.println(isPolindrome("level"));
+
+          WordGuessingGame game = new WordGuessingGame();
+          game.startGame();
 
     }
 
