@@ -2,7 +2,8 @@ package lesson8;
 
 public class Main {
     public static void main(String[] args){
-        System.out.println(findSymbolOccurance("Hello, world!", ' '));
+//        System.out.println(findSymbolOccurance("Hello, world!", ' '));
+        System.out.println(findWordPosition("Apollo", "Apple"));
 
     }
 
@@ -16,4 +17,9 @@ public class Main {
         }
         return counterSymbol;
     }
+
+    static int findWordPosition(String source, String target) {
+        return source.indexOf(target);
+    }
+
 }
