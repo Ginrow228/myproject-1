@@ -13,8 +13,7 @@ public class Main {
         cat1.run(220);
         cat2.swim(2.5);
 
-        System.out.println("Общее количество всех животных: " + Animal.totalAnimal);
-        System.out.println("Собак: " + Animal.dogs);
-        System.out.println("Кошек: " + Animal.cats);
+        Animal.numberOfAnimals();
+
     }
 }
