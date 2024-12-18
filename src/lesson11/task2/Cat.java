@@ -14,7 +14,7 @@ public class Cat implements Member{
 
     @Override
     public void run(int distance) {
-        System.out.println(name + " смог пробежать дистанцию в " + distance);
+        System.out.println(name + " смог пробежать дистанцию в " + distance + "м.");
     }
 
     @Override
