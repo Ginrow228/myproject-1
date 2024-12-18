@@ -2,15 +2,16 @@ package lesson10;
 
 public abstract class Animal {
 
-    protected static int totalAnimal = 0;
-    protected static int dogs = 0;
-    protected static int cats = 0;
-
+    private static int totalAnimalCounter;
 
     public Animal() {
-        totalAnimal++;
+        totalAnimalCounter++;
     }
 
     public abstract void run(double distance);
     public abstract void swim(double distance);
+
+    public static int getTotalAnimalCounter(){
+        return totalAnimalCounter;
+    }
 }

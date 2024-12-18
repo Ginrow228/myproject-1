@@ -3,11 +3,11 @@ package lesson10;
 public class Cat extends Animal{
 
     private final String name;
+    private static int catCounter;
 
     public Cat(String name) {
-        super();
         this.name = name;
-        cats++;
+        catCounter++;
     }
 
     @Override
@@ -22,5 +22,9 @@ public class Cat extends Animal{
     @Override
     public void swim(double distance) {
         System.out.println(name + " не умеет плавать");
+    }
+
+    public static int getCatCounter(){
+        return catCounter;
     }
 }
