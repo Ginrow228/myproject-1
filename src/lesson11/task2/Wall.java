@@ -12,4 +12,8 @@ public class Wall implements Obstacle{
     public void overcome(Member member) {
         member.jump(height);
     }
+
+    public int getParameter() {
+        return height;
+    }
 }

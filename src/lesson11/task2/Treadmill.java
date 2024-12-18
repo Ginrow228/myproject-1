@@ -12,4 +12,8 @@ public class Treadmill implements Obstacle{
     public void overcome(Member member) {
         member.run(distance);
     }
+
+    public int getParameter() {
+        return distance;
+    }
 }
