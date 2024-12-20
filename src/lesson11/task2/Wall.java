@@ -13,7 +13,7 @@ public class Wall implements Obstacle {
     }
 
     @Override
-    public int getParameter() {
-        return height;
+    public boolean canMemberOvercome(Member member) {
+        return member.canJump(height);
     }
 }

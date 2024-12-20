@@ -13,8 +13,8 @@ public class Treadmill implements Obstacle {
     }
 
     @Override
-    public int getParameter() {
-        return distance;
+    public boolean canMemberOvercome(Member member) {
+        return member.canJump(distance);
     }
 }
 
