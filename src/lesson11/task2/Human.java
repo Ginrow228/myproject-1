@@ -36,4 +36,4 @@ public class Human implements Member {
         return name;
     }
 }
-}
+
