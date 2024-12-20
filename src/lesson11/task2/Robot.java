@@ -17,4 +17,8 @@ public class Robot implements Member {
         System.out.println(name + " хватило сил перепрыгнуть препятствие");
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
 }

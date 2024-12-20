@@ -16,4 +16,9 @@ public class Cat implements Member {
     public void jump(int height) {
         System.out.println(name + " хватило сил перепрыгнуть препятствие");
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
