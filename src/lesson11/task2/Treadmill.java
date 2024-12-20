@@ -9,11 +9,12 @@ public class Treadmill implements Obstacle{
     }
 
     @Override
-    public void overcome(Member member) {
-        member.run(distance);
+    public boolean canMemberOvercome(Member member) {
+        return member.canRun(distance);
     }
 
-    public int getParameter() {
-        return distance;
+    @Override
+    public void overcome(Member member) {
+        member.run(distance);
     }
 }
