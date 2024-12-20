@@ -17,19 +17,10 @@ public class Competition {
 
             for (int j = 0; j < obstacles.length; j++) {
                 Obstacle obstacle = obstacles[j];
-                int parameter = obstacle.getParameter();
-                if(obstacle instanceof Treadmill){
-                    if(!member.canRun(parameter)){
-                        System.out.println(member + " не справляется с препятствием длиной в " + parameter + "м.");
-                        passedAllObstacles = false;
-                        break;
-                    }
-                } else if (obstacle instanceof Wall) {
-                    if(!member.canJump(parameter)){
-                        System.out.println(member + " не в состоянии перепрыгнуть препятствие длиной в " + parameter + "м.");
-                        passedAllObstacles = false;
-                        break;
-                    }
+                if(!obstacle.canMemberOvercome(member)){
+                    System.out.println(member + " не справился с испытанием");
+                    passedAllObstacles = false;
+                    break;
                 }
                 obstacle.overcome(member);
             }
