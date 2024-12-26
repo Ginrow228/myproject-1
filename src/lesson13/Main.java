@@ -18,6 +18,10 @@ public class Main {
         List<Integer> numbers = List.of(1, 2, 2, 3, 4, 1, 2, 5, 6, 7, 7, 2, 8, 1, 9);
         List<Integer> uniqueNumbers = findUnique(numbers);
         System.out.println(uniqueNumbers);
+
+        //4
+        calcOccurance(words);
+
     }
 
     public static int countOccurance(List<String> words, String target){
@@ -49,4 +53,26 @@ public class Main {
         }
         return list;
     }
+
+    public static void calcOccurance(List<String> words){
+
+        List<String> processedWord = new ArrayList<>();
+
+        for (int i = 0; i < words.size(); i++) {
+            String currentWord = words.get(i);
+            if(processedWord.contains(currentWord)){
+                continue;
+            }
+
+            int count = 0;
+            for (String word : words){
+                if(word.equals(currentWord)){
+                    count++;
+                }
+            }
+            processedWord.add(currentWord);
+            System.out.println(currentWord + ": " + count);
+        }
+    }
+
 }
