@@ -11,5 +11,8 @@ public class TelephoneBook {
         this.records = new ArrayList<>();
     }
 
-
+    public void add(Record record){
+        records.add(record);
+    }
+    
 }
