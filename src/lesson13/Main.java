@@ -14,6 +14,10 @@ public class Main {
         List<Integer> list = toList(array);
         System.out.println(list);
 
+        //3
+        List<Integer> numbers = List.of(1, 2, 2, 3, 4, 1, 2, 5, 6, 7, 7, 2, 8, 1, 9);
+        List<Integer> uniqueNumbers = findUnique(numbers);
+        System.out.println(uniqueNumbers);
     }
 
     public static int countOccurance(List<String> words, String target){
@@ -31,6 +35,17 @@ public class Main {
         List<Integer> list = new ArrayList<>();
         for (Integer arr : array){
             list.add(arr);
+        }
+        return list;
+    }
+
+    public static List<Integer> findUnique(List<Integer> numbers){
+        List<Integer> list = new ArrayList<>();
+
+        for (Integer number : numbers) {
+            if(!list.contains(number)){
+                list.add(number);
+            }
         }
         return list;
     }
