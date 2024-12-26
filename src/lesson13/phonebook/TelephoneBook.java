@@ -25,4 +25,24 @@ public class TelephoneBook {
         System.out.println("Запись по имени " + name + " не найдена");
         return null;
     }
+
+    public List<Record> findAll(String name){
+        List<Record> result = new ArrayList<>();
+        for (Record record : records){
+            if(record.getName().equals(name)){
+                result.add(record);
+            }
+        }
+        if(!result.isEmpty()){
+            System.out.println("Записи по имени " + name + " были найдены: ");
+            for (Record record : result){
+                System.out.print(record.getName() + ", " + record.getPhoneNumber());
+                System.out.println();
+            }
+        } else {
+            System.out.println("Записей не найдено");
+        }
+
+        return result;
+    }
 }
