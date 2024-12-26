@@ -21,6 +21,13 @@ public class Main {
 
         //4
         calcOccurance(words);
+        System.out.println();
+
+        //5
+        List<WordCount> occurance = findOccurance(words);
+        for (WordCount word : occurance){
+            System.out.println(word);
+        }
 
     }
 
@@ -73,6 +80,27 @@ public class Main {
             processedWord.add(currentWord);
             System.out.println(currentWord + ": " + count);
         }
+    }
+
+    public static List<WordCount> findOccurance(List<String> words){
+
+        List<WordCount> temp = new ArrayList<>();
+
+        //Прохожденик по списку слов
+        for (String word : words){
+            boolean found = false;
+            for (WordCount wordCount : temp){
+                if(wordCount.word.equals(word)){
+                    wordCount.count++;
+                    found = true;
+                    break; //Выйти если слово встретилось
+                }
+            }
+            if(!found){ //Когда слово не встречается добавляю новое
+                temp.add(new WordCount(word, 1));
+            }
+        }
+        return temp;
     }
 
 }
