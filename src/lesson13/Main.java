@@ -9,7 +9,10 @@ public class Main {
         List<String> words = List.of("Rock", "Jazz", "Rap", "Jazz", "Blues", "Rock", "Electronic", "Disco", "Rap", "Rock", "Jazz");
         System.out.println(countOccurance(words, "Jazz"));
 
-
+        //2
+        int[] array = {1, 2, 3, 4, 5};
+        List<Integer> list = toList(array);
+        System.out.println(list);
 
     }
 
@@ -21,5 +24,14 @@ public class Main {
             }
         }
         return counter;
+    }
+
+    public static List<Integer> toList(int[] array){
+
+        List<Integer> list = new ArrayList<>();
+        for (Integer arr : array){
+            list.add(arr);
+        }
+        return list;
     }
 }
