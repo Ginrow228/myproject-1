@@ -22,7 +22,7 @@ public class TelephoneBook {
                 return record;
             }
         }
-        System.out.println("Запись по имени " + name + " не найдена");
+        System.out.println("Записей с именем " + name + " не найдено");
         return null;
     }
 
