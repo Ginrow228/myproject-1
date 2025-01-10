@@ -28,5 +28,15 @@ public class CoffeeOrderBoard {
         return orders.poll();
     }
 
+    public Order deliver(int orderNumber){
+        for (Order tempOrder : orders){
+            if(tempOrder.getOrderNumber() == orderNumber){
+                orders.remove(tempOrder);
+                return tempOrder;
+            }
+        }
+        return null;
+    }
+
 
 }
