@@ -38,7 +38,15 @@ public class CoffeeOrderBoard {
         throw new OrderNotFoundException("Заказ под номером " + orderNumber + " не был найден");
     }
 
-
-
+    public void draw(){
+        if(orders.isEmpty()){
+            System.out.println("Заказов нет!");
+        } else {
+            System.out.println("Num " + " | " + " Name");
+            for (Order order : orders){
+                System.out.println(order);
+            }
+        }
+    }
 
 }
