@@ -13,4 +13,12 @@ public class CoffeeOrderBoard {
         count = 1;
     }
 
+    public boolean add(String name){
+        Order newOrder = new Order(count, name);
+        orders.add(newOrder);
+        count++;
+
+        return true;
+    }
+
 }
