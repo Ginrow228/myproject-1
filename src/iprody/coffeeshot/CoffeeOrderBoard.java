@@ -21,4 +21,12 @@ public class CoffeeOrderBoard {
         return true;
     }
 
+    public Order deliver(){
+        if(orders.isEmpty()){
+            return null;
+        }
+        return orders.poll();
+    }
+
+
 }
