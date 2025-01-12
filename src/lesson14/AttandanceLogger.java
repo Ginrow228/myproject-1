@@ -1,13 +1,9 @@
 package lesson14;
-
-import com.sun.source.tree.Tree;
-
-import java.time.LocalTime;
 import java.util.*;
 
 public class AttandanceLogger {
-    private List<Visit> log;
-    private Map<String, Integer> visitFrequency;
+    private final List<Visit> log;
+    private final Map<String, Integer> visitFrequency;
 
     public AttandanceLogger() {
         this.log = new ArrayList<>();
