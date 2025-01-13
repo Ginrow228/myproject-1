@@ -1,4 +1,4 @@
-package lesson16;
+package src.lesson16;
 
 public class DfsVoyager implements Voyager {
 

@@ -1,4 +1,4 @@
-package lesson16;
+package src.lesson16;
 
 public interface Voyager {
     int lookupIslands(int[][] map);
