@@ -9,8 +9,11 @@ public class Main {
                 {0, 1, 0, 1, 1},
         };
 
-        Voyager voyager = new DfsVoyager();
-        int islands = voyager.lookupIslands(map);
-        System.out.println(islands);
+//        Voyager voyager = new DfsVoyager();
+//        int islands = voyager.lookupIslands(map);
+//        System.out.println(islands);
+        BfsVoyager voyager2 = new BfsVoyager();
+        int islandsByBfs = voyager2.lookupIslands(map);
+        System.out.println(islandsByBfs);
     }
 }
