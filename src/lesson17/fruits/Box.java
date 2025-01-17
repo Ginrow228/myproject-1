@@ -10,4 +10,8 @@ public class Box<T extends Fruit> {
         this.fruits = new ArrayList<>();
     }
 
+    public void add(T fruit){
+        fruits.add(fruit);
+    }
+
 }
