@@ -14,4 +14,12 @@ public class Box<T extends Fruit> {
         fruits.add(fruit);
     }
 
+    public float getWeight(){
+        float sum = 0.0F;
+        for (T fruit : fruits){
+            sum += fruit.getWeight();
+        }
+        return sum;
+    }
+
 }
