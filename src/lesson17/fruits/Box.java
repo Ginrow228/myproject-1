@@ -22,4 +22,8 @@ public class Box<T extends Fruit> {
         return sum;
     }
 
+    public <T extends Fruit> boolean compare(Box<T> other){
+        return Float.compare(getWeight(), other.getWeight()) == 0;
+    }
+
 }
