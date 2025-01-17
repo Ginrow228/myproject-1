@@ -26,4 +26,13 @@ public class Box<T extends Fruit> {
         return Float.compare(getWeight(), other.getWeight()) == 0;
     }
 
+    public void transfer(Box<T> other){
+        if(this.getClass() == other.getClass()){
+            other.fruits.addAll(this.fruits);
+            this.fruits.clear();
+        } else {
+            System.out.println("Вы не можете пересыпать фрукты разных типов в один ящик");
+        }
+    }
+
 }
