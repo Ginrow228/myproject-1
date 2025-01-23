@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Box<T extends Fruit> {
-    private List<T> fruits;
+    private final List<T> fruits;
 
     public Box() {
         this.fruits = new ArrayList<>();
@@ -22,17 +22,13 @@ public class Box<T extends Fruit> {
         return sum;
     }
 
-    public <T extends Fruit> boolean compare(Box<T> other){
+    public boolean compare(Box<?> other){
         return Float.compare(getWeight(), other.getWeight()) == 0;
     }
 
     public void transfer(Box<T> other){
-        if(this.getClass() == other.getClass()){
             other.fruits.addAll(this.fruits);
             this.fruits.clear();
-        } else {
-            System.out.println("Вы не можете пересыпать фрукты разных типов в один ящик");
-        }
     }
 
 }

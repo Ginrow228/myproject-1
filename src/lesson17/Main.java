@@ -8,7 +8,6 @@ public class Main {
     public static void main(String[] args) {
         String[] array = {"a", "b", "c", "d"};
         System.out.println(Arrays.toString(array));
-
         swapElements(array);
         System.out.println(Arrays.toString(array));
         System.out.println("=====");

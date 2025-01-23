@@ -1,7 +1,7 @@
 package lesson17.fruits;
 
-public class Fruit {
-    private float weight;
+public abstract class Fruit {
+    private final float weight;
 
     public Fruit(float weight) {
         this.weight = weight;
