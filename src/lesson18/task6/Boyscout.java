@@ -1,8 +1,4 @@
-package lesson18;
-
-enum Team {
-    RED, BLUE, GREEN
-}
+package lesson18.task6;
 
 public class Boyscout {
     private String name;
@@ -35,4 +31,5 @@ public class Boyscout {
                 ", team=" + team +
                 '}';
     }
+
 }
