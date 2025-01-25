@@ -10,6 +10,12 @@ public class Main {
 
         getTop10UniqueSortedNumbers(); // 1
 
+        //2
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        Predicate<Integer> isEven = number -> number % 2 == 0;
+        Collection<Integer> evenNumbers = filterCollection(numbers, isEven);
+        evenNumbers.forEach(System.out::println);
+
     }
 
     static void getTop10UniqueSortedNumbers(){
@@ -22,4 +28,12 @@ public class Main {
             .sorted((o1, o2) -> o2 - o1)
             .forEach(System.out::println);
     }
+
+    static <T>Collection<T> filterCollection(Collection<T> collection, Predicate<T> predicate){
+        return collection.stream()
+                .filter(predicate)
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+
 }
