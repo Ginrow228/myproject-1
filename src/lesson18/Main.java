@@ -30,6 +30,10 @@ public class Main {
         System.out.println(randomNumbers);
         System.out.println("ASC : " + sortUniqueNumbers(randomNumbers, Sort.ASC));
         System.out.println("DESC : " + sortUniqueNumbers(randomNumbers, Sort.DESC));
+
+        //5
+        int number = 5;
+        System.out.println(calculateFactorial(number));
     }
 
     static void getTop10UniqueSortedNumbers(){
@@ -64,5 +68,10 @@ public class Main {
                 .distinct()
                 .sorted((o1, o2) -> sortOrder == Sort.ASC ? Integer.compare(o1, o2) : Integer.compare(o2, o1))
                 .collect(Collectors.toList());
+    }
+
+    static int calculateFactorial(int value){
+        return IntStream.rangeClosed(1, value)
+                .reduce(1, (a, b) -> a * b);
     }
 }
