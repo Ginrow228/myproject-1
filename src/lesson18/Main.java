@@ -16,6 +16,11 @@ public class Main {
         Collection<Integer> evenNumbers = filterCollection(numbers, isEven);
         evenNumbers.forEach(System.out::println);
 
+        //3
+        List<String> words = Arrays.asList("hello", ",", "world", "!", "good", "luck");
+        Predicate<String> contains = str -> str.contains("o");
+        String res = filterAndCombineStrings(words, contains);
+        System.out.println(res);
     }
 
     static void getTop10UniqueSortedNumbers(){
@@ -35,5 +40,9 @@ public class Main {
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
-
+    static String filterAndCombineStrings(Collection<String> collection, Predicate<String> predicate){
+        return collection.stream()
+                .filter(predicate)
+                .collect(Collectors.joining("|"));
+    }
 }
