@@ -21,6 +21,15 @@ public class Main {
         Predicate<String> contains = str -> str.contains("o");
         String res = filterAndCombineStrings(words, contains);
         System.out.println(res);
+
+        //4
+        Random random = new Random();
+        List<Integer> randomNumbers = random.ints(10, 1, 1000)
+                .boxed()
+                .toList();
+        System.out.println(randomNumbers);
+        System.out.println("ASC : " + sortUniqueNumbers(randomNumbers, Sort.ASC));
+        System.out.println("DESC : " + sortUniqueNumbers(randomNumbers, Sort.DESC));
     }
 
     static void getTop10UniqueSortedNumbers(){
@@ -44,5 +53,16 @@ public class Main {
         return collection.stream()
                 .filter(predicate)
                 .collect(Collectors.joining("|"));
+    }
+
+    enum Sort {
+        ASC, DESC
+    }
+
+    static List<Integer> sortUniqueNumbers(Collection<Integer> collection, Sort sortOrder){
+        return collection.stream()
+                .distinct()
+                .sorted((o1, o2) -> sortOrder == Sort.ASC ? Integer.compare(o1, o2) : Integer.compare(o2, o1))
+                .collect(Collectors.toList());
     }
 }
