@@ -13,7 +13,7 @@ import java.util.stream.IntStream;
 public class Main {
     public static void main(String[] args) {
 
-//        getTop10UniqueSortedNumbers(); // 1
+        getTop10UniqueSortedNumbers(); // 1
 //
 //        //2
 //        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
@@ -41,16 +41,16 @@ public class Main {
 //        System.out.println(calculateFactorial(number));
 
         //6
-        Boyscout boy1 = new Boyscout("Ivan", 15, Team.RED);
-        Boyscout boy2 = new Boyscout("Sasha", 12, Team.BLUE);
-        Boyscout boy3 = new Boyscout("Maks", 13, Team.RED);
-        Boyscout boy4 = new Boyscout("Misha", 14, Team.BLUE);
-        Boyscout boy5 = new Boyscout("David", 16, Team.GREEN);
-        Boyscout boy6 = new Boyscout("Ruslan", 17, Team.GREEN);
-
-        Camp camp = new Camp(Arrays.asList(boy1, boy2, boy3, boy4, boy5, boy6));
-        Map<Team, List<Boyscout>> grouped = camp.split();
-        grouped.forEach((team, boyscouts) -> System.out.println(team + ": " + boyscouts));
+//        Boyscout boy1 = new Boyscout("Ivan", 15, Team.RED);
+//        Boyscout boy2 = new Boyscout("Sasha", 12, Team.BLUE);
+//        Boyscout boy3 = new Boyscout("Maks", 13, Team.RED);
+//        Boyscout boy4 = new Boyscout("Misha", 14, Team.BLUE);
+//        Boyscout boy5 = new Boyscout("David", 16, Team.GREEN);
+//        Boyscout boy6 = new Boyscout("Ruslan", 17, Team.GREEN);
+//
+//        Camp camp = new Camp(Arrays.asList(boy1, boy2, boy3, boy4, boy5, boy6));
+//        Map<Team, List<Boyscout>> grouped = camp.split();
+//        grouped.forEach((team, boyscouts) -> System.out.println(team + ": " + boyscouts));
 
     }
 
@@ -58,9 +58,8 @@ public class Main {
     Random random = new Random();
     random.ints(100, 1, 1000)
             .distinct()
-            .sorted()
-            .limit(10)
             .boxed()
+            .limit(10)
             .sorted((o1, o2) -> o2 - o1)
             .forEach(System.out::println);
     }
