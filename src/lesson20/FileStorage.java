@@ -37,7 +37,7 @@ public class FileStorage implements ObjectStorage<Path> {
 
             Files.copy(file, filePath, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e){
-            throw new RuntimeException("Ошибка при сохранении файла");
+            throw new RuntimeException("Ошибка при сохранении файла", e);
         }
     }
 
