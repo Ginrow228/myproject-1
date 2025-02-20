@@ -7,6 +7,11 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+        try {
+            TestRunner.start(MathUtilsTest.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
