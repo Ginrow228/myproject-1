@@ -1,5 +1,7 @@
 package testingframework;
 
+import testclass.Employee;
+
 public class ForExample {
 
     @Test
@@ -11,4 +13,21 @@ public class ForExample {
     void shouldDivideGivenIntegers() {
         Assertions.equal(5, Math.divideExact(10, 2));
     }
+
+    @Test
+    void shouldContainSubArrayInArray() {
+        Integer[] current = {5, 9, 1, 2, 3, 10};
+        Integer[] toContain = {1, 2, 3};
+
+        Assertions.contains(current, toContain);
+    }
+
+    @Test
+    void shouldNotContainSubArrayInArray() {
+        Integer[] current = {5, 9, 1, 2, 3, 10};
+        Integer[] toContain = {2, 3, 11};
+
+        Assertions.contains(current, toContain);
+    }
+
 }
