@@ -30,4 +30,20 @@ public class ForExample {
         Assertions.contains(current, toContain);
     }
 
+    @Test
+    void testEqualRecursively() {
+        Employee employee1 = new Employee("Jerry", 25, "Manager");
+        Employee employee2 = new Employee("Jerry", 25, "Manager");
+
+        Assertions.equalRecursively(employee1, employee2);
+    }
+
+    @Test
+    void testNotEqualRecursively() {
+        Employee employee1 = new Employee("Jerry", 25, "Manager");
+        Employee employee2 = new Employee("Maria", 25, "Admin");
+
+        Assertions.equalRecursively(employee1, employee2);
+    }
+
 }
