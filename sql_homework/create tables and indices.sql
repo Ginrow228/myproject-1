@@ -2,7 +2,7 @@ create table Books(
 id SERIAL primary key,
 title VARCHAR(255) not null,
 author varchar(255) not null,
-published_year int check(published_year >= 0),
+published_year int check(published_year > 0),
 genre varchar(255)
 )
 
