@@ -67,6 +67,29 @@ public class ConsoleController {
         return scanner.nextLine();
     }
 
+    public String readSearchName() {
+        System.out.println("Enter name to search: ");
+        return scanner.next();
+    }
+
+    public void printNetworks(List<Network> networks) {
+        System.out.println("Found networks: ");
+        for (Network network : networks) {
+            System.out.println(network.toString());
+        }
+    }
+
+    public void printDevices(List<Device> devices) {
+        System.out.println("Found devices: ");
+        for (Device device : devices) {
+            System.out.println("Device: " + device.getName() + " (ID: " + device.getId() + ")");
+            System.out.println("  IP: " + device.getIpAddress());
+            System.out.println("  MAC: " + device.getMacAddress());
+            System.out.println("  Type: " + device.getType());
+            System.out.println("  Status: " + device.getStatus());
+        }
+    }
+
     public void printNetwork(Network network) {
         System.out.println(network.toString());
     }
