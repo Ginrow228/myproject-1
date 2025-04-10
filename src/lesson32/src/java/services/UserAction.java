@@ -6,6 +6,8 @@ import java.util.Optional;
 public enum UserAction {
     ADD_NETWORK(1, "To add new network"),
     ADD_DEVICE(2, "To add device to network"),
+    SEARCH_NETWORK(3, "Search network by name"),
+    SEARCH_DEVICE(4, "Search device by name"),
     EXIT(5, "To exit");
 
     private int code;

@@ -1,8 +1,10 @@
 package services;
 
 import jdbc.NetworksDao;
+import model.Device;
+import model.Network;
 import ui.ConsoleController;
-import java.sql.SQLException;
+import java.util.List;
 
 public class NetworkService {
     private NetworksDao networkDao;
@@ -46,6 +48,18 @@ public class NetworkService {
                 var networkToSet = consoleController.selectNetwork(networks);
                 var deviceToAdd = consoleController.readNewDevice();
                 deviceToAdd.setNetworkId(networkToSet.getId());
+                deviceToAdd = networkDao.save(deviceToAdd);
+                System.out.println("Device added: " + deviceToAdd.getName());
+            }
+            case SEARCH_NETWORK -> {
+                var name = consoleController.readSearchName();
+                List<Network> networks = networkDao.findNetworksByName(name);
+                consoleController.printNetworks(networks);
+            }
+            case SEARCH_DEVICE -> {
+                var name = consoleController.readSearchName();
+                List<Device> devices = networkDao.findDevicesByName(name);
+                consoleController.printDevices(devices);
             }
             case EXIT -> {
                 return;
