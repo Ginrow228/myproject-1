@@ -1,6 +1,8 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Device {
     private Long id;
@@ -11,6 +13,7 @@ public class Device {
     private String type;
     private String status;
     private Date created_at;
+    private List<Connection> connections;
 
     public Device(String name, String ipAddress, String macAddress, String type, String status) {
         this.name = name;
@@ -18,6 +21,7 @@ public class Device {
         this.macAddress = macAddress;
         this.type = type;
         this.status = status;
+        this.connections = new ArrayList<>();
     }
 
     public Device(Long id, Long networkId, String name, String ipAddress, String macAddress, String type, String status, Date created_at) {
@@ -29,6 +33,15 @@ public class Device {
         this.type = type;
         this.status = status;
         this.created_at = created_at;
+        this.connections = new ArrayList<>();
+    }
+
+    public List<Connection> getConnections() {
+        return connections;
+    }
+
+    public void addConnection(Connection connection) {
+        this.connections.add(connection);
     }
 
     public Long getId() {
@@ -74,4 +87,6 @@ public class Device {
     public void setNetworkId(Long networkId) {
         this.networkId = networkId;
     }
+
+
 }
