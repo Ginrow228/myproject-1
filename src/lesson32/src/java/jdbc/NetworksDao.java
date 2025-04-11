@@ -3,6 +3,7 @@ package jdbc;
 import model.DatabaseOperation;
 import model.Device;
 import model.Network;
+import model.Connection;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,45 +15,34 @@ public class NetworksDao {
     }
 
     public Network save(Network networkToSave) throws SQLException {
-        try (var conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/network_db", "admin", "admin")) {
+        return getInfoFromDb(conn -> {
             try(var statement = conn.prepareStatement("insert into networks (name, description) values(?, ?)", Statement.RETURN_GENERATED_KEYS)) {
                 statement.setString(1, networkToSave.getName());
                 statement.setString(2, networkToSave.getDescription());
-                statement.executeQuery();
+                statement.executeUpdate();
                 ResultSet rs = statement.getGeneratedKeys();
-                rs.next();
-                networkToSave.setId(rs.getLong("id"));
-                networkToSave.setCreated_at(rs.getDate("created_at"));
+                if (rs.next()) {
+                    networkToSave.setId(rs.getLong(1));
+                    try (var timestampQuery = conn.prepareStatement(
+                            "SELECT created_at FROM networks WHERE id = ?")) {
+                        timestampQuery.setLong(1, networkToSave.getId());
+                        ResultSet tsRs = timestampQuery.executeQuery();
+                        if (tsRs.next()) {
+                            networkToSave.setCreated_at(tsRs.getDate("created_at"));
+                        }
+                    }
+                } else {
+                    throw new RuntimeException("Failed to get ID for new network");
+                }
+                return networkToSave;
+            } catch (Exception e) {
+                throw new RuntimeException("Error saving network: " + e.getMessage());
             }
-        } catch (Exception e) {
-
-        }
-        return networkToSave;
-    }
-
-    public Device save(Device deviceToSave) throws SQLException {
-        try (var conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/network_db", "admin", "admin")) {
-            try(var statement = conn.prepareStatement("insert into networks (network_id, name, ip_address, mac_address, type, status) values(?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)) {
-                statement.setLong(1, deviceToSave.getNetworkId());
-                statement.setString(2, deviceToSave.getName());
-                statement.setString(3, deviceToSave.getIpAddress());
-                statement.setString(4, deviceToSave.getMacAddress());
-                statement.setString(5, deviceToSave.getType());
-                statement.setString(6, deviceToSave.getStatus());
-                statement.executeQuery();
-                ResultSet rs = statement.getGeneratedKeys();
-                rs.next();
-                deviceToSave.setId(rs.getLong("id"));
-                deviceToSave.setCreated_at(rs.getDate("created_at"));
-            }
-        } catch (Exception e) {
-
-        }
-        return deviceToSave;
+        });
     }
 
     public List<Network> getNetworks() throws SQLException {
-        try (var conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/network_db", "admin", "admin")) {
+        return getInfoFromDb(conn -> {
             try(var statement = conn.createStatement()) {
                 var rs = statement.executeQuery("Select * from networks");
                 var list = new ArrayList<Network>();
@@ -64,8 +54,10 @@ public class NetworksDao {
                     list.add(new Network(id, name, description, createdAt));
                 }
                 return list;
+            } catch (Exception e) {
+                throw new RuntimeException("Error getting list of networks: " + e.getMessage());
             }
-        }
+        });
     }
 
     public List<Network> findNetworksByName(String name) throws SQLException {
@@ -73,7 +65,7 @@ public class NetworksDao {
             try {
                 var query = "SELECT * from networks WHERE name like ?";
                 try (var statement = connection.prepareStatement(query)) {
-                    statement.setString(1, "name");
+                    statement.setString(1, "%" + name + "%");
                     var rs = statement.executeQuery();
 
                     List<Network> networks = new ArrayList<>();
@@ -93,31 +85,69 @@ public class NetworksDao {
         });
     }
 
-    public List<Device> findDevicesByName(String name) throws SQLException {
+    public List<Network> getNetworksWithDevices() throws SQLException {
         return getInfoFromDb(connection -> {
             try {
-                var query = "SELECT * from devices WHERE name like ?";
-                try(var statement = connection.prepareStatement(query)) {
-                    statement.setString(1, "name");
-                    var rs = statement.executeQuery();
+                var query = "SELECT n.id as network_id, n.name as network_name, n.description, n.created_at as network_created_at, " +
+                        "d.id as device_id, d.name as device_name, d.ip_address, d.mac_address, d.type, d.status, d.created_at as device_created_at " +
+                        "FROM networks n " +
+                        "LEFT JOIN devices d ON n.id = d.network_id " +
+                        "ORDER BY n.id";
 
-                    List<Device> devices = new ArrayList<>();
+                try(var statement = connection.createStatement();
+                    var rs = statement.executeQuery(query)) {
+                    List<Network> networks = new ArrayList<>();
+                    Network currNetwork = null;
+                    Long currNetworkId = null;
+
                     while (rs.next()) {
-                        Long deviceId = rs.getLong("id");
                         Long networkId = rs.getLong("network_id");
-                        String deviceName = rs.getString("name");
-                        String ipAddress = rs.getString("ip_address");
-                        String macAddress = rs.getString("mac_address");
-                        String type = rs.getString("type");
-                        String status = rs.getString("status");
-                        Date createdAt = rs.getDate("created_at");
+                        if(currNetworkId == null || !currNetworkId.equals(networkId)) {
+                            String networkName = rs.getString("network_name");
+                            String description = rs.getString("description");
+                            Date networkCreatedAt = rs.getDate("network_created_at");
 
-                        devices.add(new Device(deviceId, networkId, deviceName, ipAddress, macAddress, type, status, createdAt));
+                            currNetwork = new Network(networkId, networkName, description, networkCreatedAt);
+                            networks.add(currNetwork);
+                            currNetworkId = networkId;
+                        }
+                        Long deviceId = rs.getLong("device_id");
+                        if(!rs.wasNull()) {
+                            String deviceName = rs.getString("device_name");
+                            String ipAddress = rs.getString("ip_address");
+                            String macAddress = rs.getString("mac_address");
+                            String type = rs.getString("type");
+                            String status = rs.getString("status");
+                            Date deviceCreatedAt = rs.getDate("device_created_at");
+
+                            model.Device device = new model.Device(deviceId, networkId, deviceName, ipAddress, macAddress, type, status, deviceCreatedAt);
+                            currNetwork.addDevice(device);
+                        }
                     }
-                    return devices;
+                    return networks;
                 }
             } catch (SQLException e) {
-                throw new RuntimeException("Error searching for devices: " + e.getMessage());
+                throw new RuntimeException("Errors when receiving networks with the device: " + e.getMessage());
+            }
+        });
+    }
+
+    public int countActiveDevicesInNetwork(Long networkId) throws SQLException {
+        return getInfoFromDb(connection -> {
+            try {
+                var query = "SELECT COUNT(*) as count FROM devices WHERE network_id = ? AND status = 'active'";
+                try (var statement = connection.prepareStatement(query)) {
+                    statement.setLong(1, networkId);
+                    var rs = statement.executeQuery();
+
+                    if (rs.next()) {
+                        return rs.getInt("count");
+                    }
+
+                    return 0;
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException("Error counting active devices: " + e.getMessage(), e);
             }
         });
     }
@@ -131,3 +161,4 @@ public class NetworksDao {
         }
     }
 }
+
