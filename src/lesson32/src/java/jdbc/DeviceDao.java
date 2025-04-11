@@ -76,7 +76,7 @@ public class DeviceDao {
                 }
                 return devices;
             } catch (SQLException e) {
-                throw new RuntimeException("Ошибка при получении устройств сети: " + e.getMessage());
+                throw new RuntimeException("Error getting network devices: " + e.getMessage());
             }
         });
     }
