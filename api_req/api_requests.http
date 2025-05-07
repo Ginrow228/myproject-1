@@ -1,0 +1,15 @@
+GET https://timeapi.io/api/health/check
+###
+GET https://timeapi.io/api/Time/current/zone?timeZone=Asia/Tokyo
+###
+GET https://timeapi.io/api/Time/current/ip?ipAddress=8.8.8.8
+###
+GET https://timeapi.io/api/Conversion/DayOfTheWeek/2025-04-18
+###
+POST https://timeapi.io/api/Conversion/Translate
+Content-Type: application/json
+
+{
+  "dateTime": "2021-03-14 17:45:00",
+  "languageCode": "ru"
+}
